@@ -1,0 +1,238 @@
+<div class="loader" *ngIf="!isAuthenticityChecked"></div>
+<div class="wrapper ">
+
+  <!-- Page Content Holder -->
+  <div id="content" class="createcontent">
+    <div class="row">
+      <h1 style="margin-left: 40%;">{{ledgername}}</h1>
+    </div>
+    <div *ngIf="datehide==false" class="row">
+      <h4 style="margin-left: 35%;">{{fromdate}} To {{todate}}</h4>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label for="name">Ledger Name</label>
+        <select class="form-control" name="customername" [(ngModel)]="ledgerid">
+          <option value="" [selected]>--Choose--</option>
+          <ng-container *ngFor='let l of ledgerlist'>
+            <option [value]="l.ID">{{l.name}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <label for="date">From Date</label><br>
+        <input type="date" class="form-control" [(ngModel)]="fromdate">
+      </div>
+      <div class="form-group col-md-3">
+        <label for="date">To Date</label><br>
+        <input type="date" class="form-control" [(ngModel)]="todate">
+      </div>
+      <div class="form-group col-md-3">
+        <button (click)="Submit()" style="background-color:#4e73df;
+              border-color:#4e73df;margin-top: 30px;" class="btn btn-primary">Submit</button>
+        <button (click)="Print('printid')" style="background-color:#4e73df;
+                            border-color:#4e73df;margin-top: 30px;margin-left: 15px;"
+          class="btn btn-primary">Print</button>
+      </div>
+    </div>
+    <!-- <div class="row" *ngIf="ledgersalelist!=null||ledgersalelist!=undefined">
+              <div  class="form-group col-md-3">
+                <label>Amount</label>
+                <input  type="number" class="form-control" name="amount" placeholder="amount" [(ngModel)]="amount">
+              </div>
+              <div class="form-group col-md-03">
+                <button  (click)="Add()" style="background-color:#4e73df;
+              border-color:#4e73df;margin-top: 30px;"  class="btn btn-primary">Add</button>
+            </div>
+          </div> -->
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Ledger Summary</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead class="thead-dark">
+              <tr>
+                <th bgcolor="#6599F">Total Sale</th>
+                <th bgcolor="#6599F">Total Feet</th>
+                <th bgcolor="#6599F">Total Debit</th>
+                <th bgcolor="#6599F">Total Credit</th>
+                <th bgcolor="#6599F">Amount to be Recieved</th>
+                <th bgcolor="#6599F">Deposit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr>
+                  <td>{{totalsaleamount}}</td>
+                  <td>{{totalfeet}}</td>
+                  <td>{{totaldebitamount}}</td>
+                  <td>{{totalcreditamount}}</td>
+                  <td style="color: red;">{{amounttoberecieved}}</td>
+                  <td style="color: green;">{{overflow}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Ledger Sale List</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead class="thead-dark">
+              <tr>
+                <th height="50" bgcolor="#6599F">#</th>
+                <th bgcolor="#6599F">Date</th>
+                <th bgcolor="#6599F">Item</th>
+                <th bgcolor="#6599F">Feet</th>
+                <th bgcolor="#6599F">Debit</th>
+                <th bgcolor="#6599F">Credit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let s of ledgersalelist;let i=index">
+                <tr>
+                  <td>{{i+1}}</td>
+                  <td>{{ s.date}}</td>
+                  <td>{{ s.itemName}}</td>
+                  <td>{{ s.feet}}</td>
+                  <td>{{ s.debit}}</td>
+                  <td style="color: red;">{{ s.credit}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+<div hidden id="printid">
+  <h1 align="center"><span style="font-size: 22px">Tee Yes Materials Park</span><br>
+    <span style="font-size: 15px">Neerkkunnam, Vandanam P O, Alappuzha, Phone: +919544746630</span><br>
+    <span style="font-size: 22px">Ledger Sales Report</span>
+  </h1>
+  <div style="border: 1px solid black; padding:10px 10px 2px 10px;" class="container">
+    <div style="border: 1px solid black;">
+    <div style="margin-left: 10px;">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"><strong>Ledger Details</strong></h6>
+      </div>
+      <div class="card-body" *ngFor="let l of templedgerlist;">
+          <div class="row">
+            <div class="form-group col-md-4">
+            <h6>Name : {{l.name}}</h6>
+            </div>
+            <div class="form-group col-md-3">
+              <h6>Mobile : {{l.mobile}}</h6>
+            </div>
+            <div *ngIf="datehide==false" class="form-group col-md-5">
+              <h6>Report Date : {{fromdate}} To {{todate}}</h6>
+            </div>
+            <div *ngIf="datehide==true" class="form-group col-md-4">
+              <h6>Repport Date : All</h6>
+            </div>
+            <div class="form-group col-md-12">
+              <h6>Address : {{l.address}}</h6>
+              </div>
+          </div>
+      </div>
+    </div>
+    </div>
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"><strong>Ledger Summary</strong></h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead class="thead-dark">
+              <tr>
+                <th bgcolor="#6599F">Total Sale</th>
+                <th bgcolor="#6599F">Total Feet</th>
+                <th bgcolor="#6599F">Total Debit</th>
+                <th bgcolor="#6599F">Total Credit</th>
+                <th bgcolor="#6599F">Amount to be Recieved</th>
+                <th bgcolor="#6599F">Deposit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr>
+                  <td>{{totalsaleamount}}</td>
+                  <td>{{totalfeet}}</td>
+                  <td>{{totaldebitamount}}</td>
+                  <td>{{totalcreditamount}}</td>
+                  <td style="color: red;">{{amounttoberecieved}}</td>
+                  <td style="color: green;">{{overflow}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary"><strong>Sale List</strong></h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead class="thead-dark">
+              <tr>
+                <th height="50" bgcolor="#6599F">#</th>
+                <th bgcolor="#6599F">Date</th>
+                <th bgcolor="#6599F">Item</th>
+                <th bgcolor="#6599F">Feet</th>
+                <th bgcolor="#6599F">Debit</th>
+                <th bgcolor="#6599F">Credit</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let s of ledgersalelist;let i=index">
+                <tr>
+                  <td>{{i+1}}</td>
+                  <td>{{ s.date}}</td>
+                  <td>{{ s.itemName}}</td>
+                  <td>{{ s.feet}}</td>
+                  <td>{{ s.debit}}</td>
+                  <td style="color: red;">{{ s.credit}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!-- jQuery CDN -->
+
+<!-- Bootstrap Js CDN -->
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+    });
+  });
+</script>
+

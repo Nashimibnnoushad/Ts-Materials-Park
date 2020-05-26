@@ -1,0 +1,98 @@
+
+.wrapper {
+    display:grid ;
+    align-items : flex-start;
+}
+
+.createcontent{
+    padding-top: 0px !important;
+}
+
+
+
+.table-responsive {
+    /* display: block; */
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.table .thead-dark th {
+    color: black;
+    background-color: white;
+    border-color: #ddd;
+}
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+/* .Incomeicon {
+    margin-top: 459px;
+    margin-left: 429px;
+}
+.Outcomeicon {
+    margin-top: -60px;
+    margin-left: 499px;
+} */
+
+
+/* .fa-stream{
+    opacity: .5;
+} */
+
+
+.fa-stream{
+    font-size: 100px;
+    color:#829be6;
+}
+.fa-stream:hover{
+    color: #4e73df;
+    font-size: 110px;
+    cursor: pointer;
+}
+.fa-sort-amount-up{
+    font-size: 100px;
+    color:#829be6;
+}
+.fa-sort-amount-up:hover{
+    color: #4e73df;
+    font-size: 110px;
+    cursor: pointer
+}
+.fa-sort-amount-down{
+    font-size: 100px;
+    color:#829be6;
+}
+.fa-sort-amount-down:hover{
+    color: #4e73df;
+    font-size: 110px;
+    cursor: pointer
+}
+.fa-file-invoice{
+    font-size: 100px;
+    color:#829be6;
+}
+.fa-file-invoice:hover{
+    color: #4e73df;
+    font-size: 110px;
+    cursor: pointer
+}
+.fa-list-alt{
+    font-size: 100px;
+    color:#829be6; 
+}
+.fa-list-alt:hover{
+    color: #4e73df;
+    font-size: 110px;
+    cursor: pointer
+}
+.fa-user-plus{
+    font-size: 100px;
+    color:#829be6; 
+}
+.fa-user-plus:hover{
+    color: #4e73df;
+    font-size: 110px;
+    cursor: pointer
+}

@@ -1,0 +1,46 @@
+<div class="container" >
+
+    <!-- Outer Row -->
+    <div class="row justify-content-center">
+
+        <div class="col-xl-10 col-lg-12 col-md-9">
+
+            <div class="card o-hidden border-0 shadow-lg my-5">
+                <div class="card-body p-0">
+                    <!-- Nested Row within Card Body -->
+                    <div class="row">
+                        <div class="col-lg-6 d-none d-lg-block ">
+                            <img src="../../../assets/img/logo.png" style="width: 450px;height: 360px;">
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="p-5">
+                                <div class="text-center">
+                                    <h1 class="h4 text-gray-900 mb-4">Tee Yes Material Park</h1>
+                                </div>
+                                <form class="user" (ngSubmit)="f.form.valid && login()" #f="ngForm" novalidate>
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !username.valid }">
+                                        <input type="email" class="form-control form-control-user" id="exampleInputEmail" aria-describedby="emailHelp" placeholder="Enter User Name ....." name="username" [(ngModel)]="model.username" #username="ngModel" required />
+                                    </div>
+                                    <div class="form-group" [ngClass]="{ 'has-error': f.submitted && !password.valid }">
+                                        <input type="password" class="form-control form-control-user" id="exampleInputPassword" placeholder="Password" name="password" [(ngModel)]="model.password" #password="ngModel" required />
+                                    </div>
+                                    <button class="btn btn-primary btn-user btn-block">
+                                     Login
+                                    </button>
+                                    <hr>
+                                </form>
+                  <div class="text-center">
+                    <a class="small">Designed by: Nashim K N</a><br>
+                    <a class="small">Contact: +919895981936</a><br>
+                  </div> 
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div>

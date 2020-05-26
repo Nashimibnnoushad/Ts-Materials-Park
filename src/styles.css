@@ -1,0 +1,50 @@
+/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/prebuilt-themes/indigo-pink.css";
+.loader {
+    margin: auto;
+    height: 48px;
+    width: 48px;
+    border-radius: 50%;
+    border-top: 2px solid blueviolet;
+    border-right: 2px solid transparent;
+    animation: spin 0.7s ease-in-out infinite;
+  }
+  @keyframes spin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+  }
+
+  .wrapper {
+    display:grid ;
+    align-items : flex-start;
+}
+
+.createcontent{
+    padding-top: 0px !important;
+}
+
+
+
+.table-responsive {
+    /* display: block; */
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.table .thead-dark th {
+    color: black;
+    background-color: white;
+    border-color: #ddd;
+}
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}
+.mat-radio-button ~ .mat-radio-button {
+    margin-left: 16px;
+  }
+
+  
+  

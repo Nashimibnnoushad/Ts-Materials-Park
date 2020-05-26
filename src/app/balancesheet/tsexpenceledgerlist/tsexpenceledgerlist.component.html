@@ -1,0 +1,107 @@
+<div class="loader" *ngIf="!isAuthenticityChecked"></div>
+<div class="wrapper ">
+
+  <!-- Page Content Holder -->
+  <div id="content" class="createcontent">
+    <div class="row">
+      <h1 style="margin-left: 40%;">{{ledgername}}</h1>
+    </div>
+    <div class="row">
+      <div class="form-group col-md-3">
+        <label for="name">Ledger Name</label>
+        <select class="form-control" name="customername" [(ngModel)]="ledgerid">
+          <option value="" [selected]>--Choose--</option>
+          <ng-container *ngFor='let l of expenseledgerlist'>
+            <option [value]="l.ID">{{l.expenseLedger}}</option>
+          </ng-container>
+        </select>
+      </div>
+      <div class="form-group col-md-3">
+        <button (click)="Submit()" style="background-color:#4e73df;
+              border-color:#4e73df;margin-top: 30px;" class="btn btn-primary">Submit</button>
+      </div>
+      <div class="form-group col-md-3">
+        <label>Amount</label>
+        <input type="number" class="form-control" name="amount" placeholder="amount" [(ngModel)]="amount">
+      </div>
+      <div class="form-group col-md-03">
+        <button (click)="Add()" style="background-color:#4e73df;
+              border-color:#4e73df;margin-top: 30px;" class="btn btn-primary">Add</button>
+      </div>
+    </div>
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Expense Ledger Summary</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead class="thead-dark">
+              <tr>
+                <th bgcolor="#6599F">Total Expense Amount</th>
+                <th bgcolor="#6599F">Paid Amount</th>
+                <th bgcolor="#6599F">Balance Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container>
+                <tr>
+                  <td>{{totalexpenseamount}}</td>
+                  <td>{{paidamount}}</td>
+                  <td>{{balanceamount}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div class="card shadow mb-4">
+      <div class="card-header py-3">
+        <h6 class="m-0 font-weight-bold text-primary">Expense List</h6>
+      </div>
+      <div class="card-body">
+        <div class="table-responsive">
+          <table class="table table-bordered" width="100%" cellspacing="0">
+            <thead class="thead-dark">
+              <tr>
+                <th height="50" bgcolor="#6599F">#</th>
+                <th bgcolor="#6599F">Date</th>
+                <th bgcolor="#6599F">Time</th>
+                <th bgcolor="#6599F">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <ng-container *ngFor="let s of ledgerexpenselist;let i=index">
+                <tr>
+                  <td>{{i+1}}</td>
+                  <td>{{ s.date}}</td>
+                  <td>{{ s.time}}</td>
+                  <td>{{ s.amount}}</td>
+                </tr>
+              </ng-container>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+
+
+
+<!-- jQuery CDN -->
+
+<!-- Bootstrap Js CDN -->
+
+
+<script type="text/javascript">
+  $(document).ready(function () {
+    $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+    });
+  });
+</script>

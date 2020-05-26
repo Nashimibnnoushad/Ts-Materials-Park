@@ -1,0 +1,116 @@
+<div class="loader" *ngIf="!isAuthenticityChecked"></div>
+<div class="wrapper ">
+
+    <!-- Page Content Holder -->
+    <div id="content" class="createcontent">
+        <form [formGroup]="SaleForm">
+          <div class="row"><h1 style="margin-left: 40%;">{{date}}</h1></div>
+          <div class="row">
+            <mat-radio-group [value]="2" aria-label="Select an option">
+              <mat-radio-button (click)="Selected('1')" [value]="1">Not Ledger</mat-radio-button>
+              <mat-radio-button (click)="Selected('2')" [value]="2">Ledger</mat-radio-button>
+            </mat-radio-group>
+          </div>
+            <div class="row">
+              <div *ngIf="ledgerhide!=true" class="form-group col-md-3">
+                <label for="name">Ledger Name</label>
+                <select class="form-control" formControlName="customer" name="customername" [(ngModel)]="customername">
+                  <option value=""  [selected]>--Choose--</option>
+                  <ng-container *ngFor='let l of ledgerlist'>
+                    <option [value]="l.name">{{l.name}}</option>
+                  </ng-container>
+                </select>
+              </div>
+              <div *ngIf="ledgerhide==true"  class="form-group col-md-3">
+                <label>Name</label>
+                <input  type="text" class="form-control" formControlName="customer"  name="customername" placeholder="Customer Name"
+                    [(ngModel)]="customername">
+            </div>
+              <div class="form-group col-md-3">
+                <label for="name">Item</label>
+                <select class="form-control" name="item" formControlName="item"  [(ngModel)]="item">
+                  <option value=""  [selected]>--Choose--</option>
+                  <ng-container *ngFor='let i of itemlist'>
+                    <option [value]="i.itemName">{{i.itemName}}</option>
+                  </ng-container>
+                </select>
+              </div>
+              <div class="form-group col-md-2">
+                <label>Feet</label>
+                <input  type="number" class="form-control" formControlName="feet"  name="feet" placeholder="Feet"
+                    [(ngModel)]="feet">
+            </div>
+            <div class="form-group col-md-2">
+              <label>Debit</label>
+              <input  type="number" class="form-control" formControlName="amount"  name="debit" placeholder="Debit"
+                  [(ngModel)]="debit">
+          </div>
+          <div class="form-group col-md-2">
+            <label>Credit</label>
+            <input  type="number" class="form-control" formControlName="amount"  name="credit" placeholder="Credit"
+                [(ngModel)]="credit">
+           </div>
+          </div>
+          <div class="row">
+          <div class="form-group col-md-12">
+            <button [disabled]="SaleForm.invalid" (click)="Add()" style="background-color:#4e73df;
+          border-color:#4e73df;margin-top: 30px;"  class="btn btn-primary">Add</button>
+          </div>
+          </div>
+        </form>
+        <div class="card shadow mb-4">
+          <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Sale List</h6>
+          </div>
+          <div class="card-body">
+            <div class="table-responsive">
+              <table class="table table-bordered" width="100%" cellspacing="0">
+                <thead class="thead-dark">
+                  <tr>
+                    <th height="50" bgcolor="#6599F">#</th>
+                    <th bgcolor="#6599F">Time</th>
+                    <th bgcolor="#6599F">Customer/Ledger</th>
+                    <th bgcolor="#6599F">Item</th>
+                    <th bgcolor="#6599F">Feet</th>
+                    <th bgcolor="#6599F">Debit</th>
+                    <th bgcolor="#6599F">Credit</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <ng-container *ngFor="let s of todaysalelist;let i=index">
+                    <tr>
+                      <td>{{i+1}}</td>
+                      <td>{{ s.time}}</td>
+                      <td>{{ s.customerName}}</td>
+                      <td>{{ s.itemName}}</td>
+                      <td>{{ s.feet}}</td>
+                      <td>{{ s.debit}}</td>
+                      <td style="color: red;">{{ s.credit}}</td>
+                    </tr>
+                  </ng-container>
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+</div>
+
+</div>
+
+
+
+
+<!-- jQuery CDN -->
+
+<!-- Bootstrap Js CDN -->
+
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#sidebarCollapse').on('click', function () {
+            $('#sidebar').toggleClass('active');
+        });
+    });
+</script>
+
+

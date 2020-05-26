@@ -1,0 +1,29 @@
+
+.wrapper {
+    display:grid ;
+    align-items : flex-start;
+}
+
+.createcontent{
+    padding-top: 0px !important;
+}
+
+
+
+.table-responsive {
+    /* display: block; */
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    -ms-overflow-style: -ms-autohiding-scrollbar;
+}
+.table .thead-dark th {
+    color: black;
+    background-color: white;
+    border-color: #ddd;
+}
+#content {
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
+}

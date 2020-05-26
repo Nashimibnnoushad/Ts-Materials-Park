@@ -1,0 +1,18 @@
+.loader {
+  margin: auto;
+  height: 48px;
+  width: 48px;
+  border-radius: 50%;
+  border-top: 2px solid blueviolet;
+  border-right: 2px solid transparent;
+  animation: spin 0.7s ease-in-out infinite;
+}
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+.bg-login-image {
+
+  /* background: url(C:/Recovery/download.png); */
+  background: url(../../../assets/img/logo.png);
+}
